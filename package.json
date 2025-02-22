@@ -27,12 +27,12 @@
   },
   "scripts": {
   "start": "react-scripts start --no-source-maps",
-  "build": "react-scripts build && rmdir /s /q docs && xcopy /E /I /Y build docs",
+  "build": "react-scripts build",
   "predeploy": "npm run build",
-  "deploy": "git add docs && git commit -m 'Deploy: Update docs folder' && git push origin main",
+  "deploy": "git add . && git commit -m 'Deploy: Update root build' && git push origin main",
   "test": "react-app-rewired test",
   "eject": "react-scripts eject"
-  } ,
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
