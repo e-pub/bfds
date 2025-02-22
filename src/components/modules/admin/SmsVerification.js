@@ -1,19 +1,24 @@
 import React, { useState } from "react";
-import axios from "axios";
+
+const API_BASE_URL = "https://your-cloudflare-workers-url/";
+
+const verifySmsCode = async (code) => {
+  const response = await fetch(`${API_BASE_URL}verify-sms-code-member`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ code }),
+  });
+
+  return response.json();
+};
 
 const SmsVerification = ({ nextStep }) => {
   const [code, setCode] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("https://your-lambda-url/sms-verification", { code });
-      if (response.data.message === "인증 성공") {
-        nextStep();
-      }
-    } catch (error) {
-      alert("인증 실패. 다시 시도하세요.");
-    }
+    const result = await verifySmsCode(code);
+    result.message === "인증 성공" ? nextStep() : alert("인증 실패. 다시 시도하세요.");
   };
 
   return (

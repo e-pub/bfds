@@ -32,7 +32,7 @@ function App() {
   const closePopup = () => setPopupType("");
 
   return (
-    <Router basename="/bfds">
+    <Router basename={process.env.PUBLIC_URL}>
       <Preloader load={load} />
       <div className={`App ${load ? "no-scroll" : "scroll"}`}>
         <Navbar
