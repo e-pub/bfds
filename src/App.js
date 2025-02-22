@@ -32,9 +32,9 @@ function App() {
   const closePopup = () => setPopupType("");
 
   return (
-    <Router>
+    <Router basename="/bfds">
       <Preloader load={load} />
-      <div className={App ${load ? "no-scroll" : "scroll"}}>
+      <div className={`App ${load ? "no-scroll" : "scroll"}`}>
         <Navbar
           isAdmin={isAdmin}
           setIsAdmin={setIsAdmin}
